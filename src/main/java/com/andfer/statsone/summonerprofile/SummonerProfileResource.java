@@ -13,6 +13,7 @@ public class SummonerProfileResource {
         this.retrieveSummonerProfileUseCase = retrieveSummonerProfileUseCase;
     }
 
+
     @GetMapping("/summoner/profile/by-name/{summonerName}")
     public SummonerProfile getSummonerProfileByName(@PathVariable String summonerName) {
         return retrieveSummonerProfileUseCase.execute(summonerName);

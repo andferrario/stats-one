@@ -1,10 +1,13 @@
 package com.andfer.statsone.summonerprofile;
 
+import java.util.Optional;
+
 public class RetrieveSummonerProfileUseCase {
 
-    public RetrieveSummonerProfileUseCase() {}
+    public RetrieveSummonerProfileUseCase() {
+    }
 
-    public SummonerProfile execute(String summonerName) {
-        return new SummonerProfile(summonerName, 145, 28);
+    public Optional<SummonerProfile> execute(String summonerName) {
+        return Optional.of(new SummonerProfile(summonerName, 145, 28));
     }
 }

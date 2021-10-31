@@ -8,6 +8,7 @@ public class RetrieveSummonerProfileUseCase {
     }
 
     public Optional<SummonerProfile> execute(String summonerName) {
+        //TODO implements
         return Optional.of(new SummonerProfile(summonerName, 145, 28));
     }
 }

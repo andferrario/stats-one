@@ -1,8 +1,12 @@
 package com.andfer.statsone.summonerprofile;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 public class SummonerProfileResource {
@@ -13,9 +17,12 @@ public class SummonerProfileResource {
         this.retrieveSummonerProfileUseCase = retrieveSummonerProfileUseCase;
     }
 
-
     @GetMapping("/summoner/profile/by-name/{summonerName}")
-    public SummonerProfile getSummonerProfileByName(@PathVariable String summonerName) {
-        return retrieveSummonerProfileUseCase.execute(summonerName);
+    public ResponseEntity<SummonerProfile> getSummonerProfileByName(@PathVariable String summonerName) {
+        var result = retrieveSummonerProfileUseCase.execute(summonerName);
+
+        return result
+                .map(summonerProfile -> new ResponseEntity<>(summonerProfile, OK))
+                .orElse(new ResponseEntity<>(NOT_FOUND));
     }
 }
